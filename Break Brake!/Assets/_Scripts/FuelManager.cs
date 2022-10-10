@@ -11,6 +11,9 @@ public class FuelManager : MonoBehaviour
 
     [SerializeField] Vector3 angle;
 
+    float fuelValue = 105f;
+    float maxFuel =140f;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -20,17 +23,19 @@ public class FuelManager : MonoBehaviour
     void Start()
     {
         needleTrans = GameObject.Find("Needle").GetComponent<RectTransform>();
-        angle = needleTrans.localRotation.eulerAngles;
+        //angle = needleTrans.localRotation.eulerAngles;
+        //angle.z = fuelValue;
     }
 
     void Update()
     {
-        angle.z += Time.deltaTime * 3f;
-        needleTrans.localRotation = Quaternion.Euler(new Vector3(0, 0, angle.z));
+        fuelValue -= Time.deltaTime * 3f;
+        needleTrans.localRotation = Quaternion.Euler(new Vector3(0, 0, -fuelValue));
     }
 
     public void AddFuel()
     {
         Debug.Log("연료 보충");
+        fuelValue = Mathf.Clamp(fuelValue + 40, 0, maxFuel);
     }
 }

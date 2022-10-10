@@ -13,6 +13,7 @@ public class FieldManager : MonoBehaviour
     [SerializeField] GameObject[] field;
     [SerializeField] GameObject fuel;
 
+
     void Start()
     {
         ground = GameObject.Find("Ground");
@@ -60,7 +61,7 @@ public class FieldManager : MonoBehaviour
 
     IEnumerator SpawnFuel()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         Vector3 pos = new Vector3(Random.Range(-ground.transform.localScale.x * 4.5f, ground.transform.localScale.x * 4.5f), 0,
                                     Random.Range(-ground.transform.localScale.z * 4.5f, ground.transform.localScale.z * 4.5f));
         Instantiate(fuel, pos, Quaternion.identity);
