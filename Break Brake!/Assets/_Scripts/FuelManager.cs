@@ -5,20 +5,12 @@ using UnityEngine.UI;
 
 public class FuelManager : MonoBehaviour
 {
-    public static FuelManager instance;
-
     RectTransform needleTrans;
 
     [SerializeField] Vector3 angle;
 
-    float fuelValue = 105f;
+    [SerializeField] float fuelValue = 105f;
     float maxFuel =140f;
-
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-        else if (instance != null) Destroy(gameObject);
-    }
 
     void Start()
     {
@@ -29,8 +21,15 @@ public class FuelManager : MonoBehaviour
 
     void Update()
     {
-        fuelValue -= Time.deltaTime * 3f;
-        needleTrans.localRotation = Quaternion.Euler(new Vector3(0, 0, -fuelValue));
+        if (fuelValue >= 0)
+        {
+            fuelValue -= Time.deltaTime * 3f;
+            needleTrans.localRotation = Quaternion.Euler(new Vector3(0, 0, -fuelValue));
+        }
+        else
+        {
+            CarMovement.instance.isGameOver = true;
+        }
     }
 
     public void AddFuel()

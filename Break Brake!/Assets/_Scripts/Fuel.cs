@@ -21,7 +21,7 @@ public class Fuel : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            FuelManager.instance.AddFuel();
+            GameObject.Find("FuelManager").GetComponent<FuelManager>().AddFuel();
             Destroy(gameObject);
         }
     }

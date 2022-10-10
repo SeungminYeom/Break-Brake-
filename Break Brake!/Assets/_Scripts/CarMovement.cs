@@ -16,6 +16,8 @@ public class CarMovement : MonoBehaviour
     [SerializeField] bool _carRot = false;
     [SerializeField] float carSpeed = 5;
 
+    bool _isGameOver;
+
     public float driftPower
     {
         get { return _driftPower; }
@@ -32,6 +34,12 @@ public class CarMovement : MonoBehaviour
     {
         get { return _carRot; }
         set { _carRot = value; }
+    }
+
+    public bool isGameOver
+    {
+        get { return _isGameOver; }
+        set { _isGameOver = value; }
     }
 
     private void Awake()
@@ -51,9 +59,19 @@ public class CarMovement : MonoBehaviour
 
     void Update()
     {
-        carRigid.AddForce(transform.forward * carSpeed, ForceMode.Acceleration);
-        carSpeed += Time.deltaTime * 0.01f;
-        text.text = carSpeed.ToString();
+        if (!isGameOver)
+        {
+            carRigid.AddForce(transform.forward * carSpeed, ForceMode.Acceleration);
+            carSpeed += Time.deltaTime * 0.01f;
+            text.text = carSpeed.ToString();
+        }
+        else
+        {
+            maxDriftPower = Mathf.Lerp(maxDriftPower, 0, Time.deltaTime * 2f);
+            Vector3 vec = carRigid.velocity;
+            vec = Vector3.Lerp(vec, Vector3.zero, Time.deltaTime);
+            carRigid.velocity = vec;
+        }
     }
 
     public void AddSpeed()
