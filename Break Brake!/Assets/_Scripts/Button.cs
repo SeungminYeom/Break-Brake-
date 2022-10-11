@@ -17,21 +17,28 @@ public class Button : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if (onTouch)
+        if (!CarMovement.instance.isGameOver)
         {
-            if (CarMovement.instance.carRot)
+            if (onTouch)
             {
-                CarMovement.instance.driftPower = Mathf.Lerp(CarMovement.instance.driftPower, -CarMovement.instance.maxDriftPower, Time.deltaTime);
-                Vector3 leftRot = car.transform.rotation.eulerAngles;
-                leftRot += new Vector3(0, CarMovement.instance.driftPower * Time.deltaTime, 0);
-                car.transform.rotation = Quaternion.Euler(leftRot);
+                if (CarMovement.instance.carRot)
+                {
+                    CarMovement.instance.driftPower = Mathf.Lerp(CarMovement.instance.driftPower, -CarMovement.instance.maxDriftPower, Time.deltaTime);
+                    Vector3 leftRot = car.transform.rotation.eulerAngles;
+                    leftRot += new Vector3(0, CarMovement.instance.driftPower * Time.deltaTime, 0);
+                    car.transform.rotation = Quaternion.Euler(leftRot);
+                }
+                else
+                {
+                    CarMovement.instance.driftPower = Mathf.Lerp(CarMovement.instance.driftPower, CarMovement.instance.maxDriftPower, Time.deltaTime);
+                    Vector3 rightRot = car.transform.rotation.eulerAngles;
+                    rightRot += new Vector3(0, CarMovement.instance.driftPower * Time.deltaTime, 0);
+                    car.transform.rotation = Quaternion.Euler(rightRot);
+                }
             }
             else
             {
-                CarMovement.instance.driftPower = Mathf.Lerp(CarMovement.instance.driftPower, CarMovement.instance.maxDriftPower, Time.deltaTime);
-                Vector3 rightRot = car.transform.rotation.eulerAngles;
-                rightRot += new Vector3(0, CarMovement.instance.driftPower * Time.deltaTime, 0);
-                car.transform.rotation = Quaternion.Euler(rightRot);
+                onTouch = false;
             }
         }
     }
