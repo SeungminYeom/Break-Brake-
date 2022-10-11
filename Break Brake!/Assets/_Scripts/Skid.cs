@@ -13,7 +13,7 @@ public class Skid : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(CarMovement.instance.driftPower) > 20)
+        if (Mathf.Abs(CarMovement.instance.driftPower) > 30)
             trail.emitting = true;
         else 
             trail.emitting = false;

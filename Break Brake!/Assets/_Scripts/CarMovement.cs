@@ -54,7 +54,7 @@ public class CarMovement : MonoBehaviour
     {
         carRigid = GetComponent<Rigidbody>();
         text = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
-        carRigid.velocity = transform.forward * 10f;
+        carRigid.AddForce(transform.forward * 10f, ForceMode.VelocityChange);
     }
 
     void Update()
