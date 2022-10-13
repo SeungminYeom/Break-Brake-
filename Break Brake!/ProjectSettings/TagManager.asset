@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemaCamera
+  - Rock
   layers:
   - Default
   - TransparentFX

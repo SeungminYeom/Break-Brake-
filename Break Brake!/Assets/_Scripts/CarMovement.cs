@@ -7,6 +7,8 @@ public class CarMovement : MonoBehaviour
 {
     public static CarMovement instance;
 
+    public GameObject explosion;
+
     Rigidbody carRigid;
 
     TextMeshProUGUI text;
@@ -77,5 +79,18 @@ public class CarMovement : MonoBehaviour
     public void AddSpeed()
     {
         carSpeed += 5;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Rock")
+        {
+            gameObject.SetActive(false);
+            explosion.transform.position = transform.position;
+            Vector3 angle = transform.eulerAngles;
+            angle.x -= 10f;
+            explosion.transform.rotation = Quaternion.Euler(angle);
+            explosion.SetActive(true);
+        }
     }
 }

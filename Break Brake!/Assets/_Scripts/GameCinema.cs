@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 enum CinemaFlow
 {
@@ -77,10 +78,12 @@ public class GameCinema : MonoBehaviour
                 }
                 break;
             case CinemaFlow.cameraMoving_4:
-                //car_1.transform.position = car_1.transform.position + car_1.transform.right * Time.deltaTime * 40f;
                 car_1.transform.position = Vector3.Lerp(car_1.transform.position, destination, Time.deltaTime * 0.8f);
-                //car_1.transform.position = car_1.transform.position + car_1.transform.right * speedToDest;
-                //speedToDest *= 0.998f;
+
+                if (car_1.transform.position.z > -244f)
+                {
+                    SceneManager.LoadScene("GameScene");
+                }
                 break;
         }
     }
