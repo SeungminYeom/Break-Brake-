@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    GameObject explo;
+    Transform explosionThings;
+    GameObject explosionThing;
 
     private void OnEnable()
     {
-        for (int i = 0; i < transform.childCount - 1; i++)
+        explosionThings = transform.Find("ExplosionThings");
+        for (int i = 0; i < explosionThings.childCount - 1; i++)
         {
-            explo = transform.GetChild(i).gameObject;
-            explo.GetComponent<Rigidbody>().AddForce((explo.transform.position - transform.position).normalized * 20f, ForceMode.Impulse);
+            explosionThing = explosionThings.GetChild(i).gameObject;
+            explosionThing.GetComponent<Rigidbody>().AddForce((explosionThing.transform.position - transform.position).normalized * 20f, ForceMode.Impulse);
         }
-        explo = transform.GetChild(transform.childCount - 1).gameObject;
-        explo.SetActive(true);
+        explosionThing = explosionThings.Find("Car").gameObject;
+        explosionThing.SetActive(true);
+
+        explosionThings = transform.Find("ExplosionFX");
+        for (int i = 0; i < explosionThings.childCount - 1; i++)
+        {
+            explosionThing = explosionThings.GetChild(i).gameObject;
+            explosionThing.GetComponent<ParticleSystem>().Play();
+        }
     }
 }
