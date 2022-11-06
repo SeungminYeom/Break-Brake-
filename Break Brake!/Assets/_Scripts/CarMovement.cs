@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class CarMovement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class CarMovement : MonoBehaviour
     [SerializeField] float _maxDriftPower = 30f;
     [SerializeField] bool _carRot = false;
     [SerializeField] float carSpeed = 5;
+    float _survivorTime = 0;
 
     bool _isGameOver;
 
@@ -44,6 +46,12 @@ public class CarMovement : MonoBehaviour
         set { _isGameOver = value; }
     }
 
+    public float survivorTime
+    {
+        get { return _survivorTime; }
+        set { _survivorTime = value; }
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -56,11 +64,13 @@ public class CarMovement : MonoBehaviour
     {
         carRigid = GetComponent<Rigidbody>();
         text = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
-        carRigid.AddForce(transform.forward * 10f, ForceMode.VelocityChange);
+        //carRigid.AddForce(transform.forward * 10f, ForceMode.VelocityChange);
     }
 
     void Update()
     {
+        survivorTime += Time.deltaTime;
+
         if (!isGameOver)
         {
             carRigid.AddForce(transform.forward * carSpeed, ForceMode.Acceleration);

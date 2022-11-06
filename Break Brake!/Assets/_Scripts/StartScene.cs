@@ -40,6 +40,9 @@ public class StartScene : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Collider")
+        {
             SceneManager.LoadScene("IntroScene");
+            //PlayerPrefs.DeleteAll();
+        }
     }
 }
