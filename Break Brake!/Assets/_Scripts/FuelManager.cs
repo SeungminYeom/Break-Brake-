@@ -23,12 +23,16 @@ public class FuelManager : MonoBehaviour
     {
         if (fuelValue >= 0)
         {
-            fuelValue -= Time.deltaTime * 3f;
-            needleTrans.localRotation = Quaternion.Euler(new Vector3(0, 0, -fuelValue));
+            if (CarMovement.instance.gameState == GameState.gamePlaying)
+            {
+                fuelValue -= Time.deltaTime * 3f;
+                needleTrans.localRotation = Quaternion.Euler(new Vector3(0, 0, -fuelValue));
+            }
         }
         else
         {
-            CarMovement.instance.isGameOver = true;
+            CarMovement.instance.gameState = GameState.isGameOver;
+            gameObject.SetActive(false);
         }
     }
 

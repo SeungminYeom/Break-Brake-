@@ -31,7 +31,7 @@ public class Explosion : MonoBehaviour
         StartCoroutine(ViewRanking());
     }
 
-    IEnumerator ViewRanking()
+    public IEnumerator ViewRanking()
     {
         yield return new WaitForSeconds(5f);
         GraphicsSettings.renderPipelineAsset = blurAsset;

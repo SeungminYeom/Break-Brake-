@@ -61,10 +61,12 @@ public class FieldManager : MonoBehaviour
 
     IEnumerator SpawnFuel()
     {
-        yield return new WaitForSeconds(1f);
-        Vector3 pos = new Vector3(Random.Range(-ground.transform.localScale.x * 4.5f, ground.transform.localScale.x * 4.5f), 0,
-                                    Random.Range(-ground.transform.localScale.z * 4.5f, ground.transform.localScale.z * 4.5f));
-        Instantiate(fuel, pos, Quaternion.identity);
-        StartCoroutine(SpawnFuel());
+        while(CarMovement.instance.gameState != GameState.isGameOver)
+        {
+            yield return new WaitForSeconds(1f);
+            Vector3 pos = new Vector3(Random.Range(-ground.transform.localScale.x * 4.5f, ground.transform.localScale.x * 4.5f), 0,
+                                        Random.Range(-ground.transform.localScale.z * 4.5f, ground.transform.localScale.z * 4.5f));
+            Instantiate(fuel, pos, Quaternion.identity);
+        }
     }
 }

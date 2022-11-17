@@ -17,14 +17,15 @@ public class HowToPlay : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         this.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         transform.parent.Find("Left").gameObject.SetActive(true);
         transform.parent.Find("Right").gameObject.SetActive(true);
+        CarMovement.instance.gameState = GameState.gamePlaying;
     }
 }

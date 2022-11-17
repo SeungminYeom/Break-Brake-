@@ -23,13 +23,17 @@ public class StartScene : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            player.SetBool("isStart", true);
-            startText.GetComponent<Animator>().SetBool("isStart", true);
-            startText.SetActive(false);
+        //if (Input.GetMouseButton(0))
+        //{
 
-        }
+        //}
+    }
+
+    public void StartAnim()
+    {
+        player.SetBool("isStart", true);
+        startText.GetComponent<Animator>().SetBool("isStart", true);
+        startText.SetActive(false);
     }
 
     //void FixedUpdate()

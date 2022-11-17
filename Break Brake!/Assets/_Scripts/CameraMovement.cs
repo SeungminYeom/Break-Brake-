@@ -12,9 +12,9 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         //GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = false;
-        DepthOfField dOF;
-        GameObject.Find("Global Volume").GetComponent<Volume>().profile.TryGet<DepthOfField>(out dOF);
-        dOF.active = false;
+        //DepthOfField dOF;
+        //GameObject.Find("Global Volume").GetComponent<Volume>().profile.TryGet<DepthOfField>(out dOF);
+        //dOF.active = false;
         target = GameObject.Find("Player");
         originPos = transform.position;
     }
