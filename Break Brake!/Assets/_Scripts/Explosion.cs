@@ -42,6 +42,6 @@ public class Explosion : MonoBehaviour
             canvas.transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        canvas.transform.GetChild(canvas.transform.childCount - 1).gameObject.SetActive(true);
+        canvas.transform.Find("Ranking").gameObject.SetActive(true);
     }
 }

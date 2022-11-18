@@ -28,7 +28,7 @@ public class Ranking : MonoBehaviour
         }
         myRank = transform.Find("RankingBox").Find("MyRank").GetComponent<TextMeshProUGUI>();
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void Update()
