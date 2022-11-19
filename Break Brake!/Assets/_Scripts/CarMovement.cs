@@ -87,8 +87,8 @@ public class CarMovement : MonoBehaviour
                 break;
             case GameState.gamePlaying:
                 //carRigid.AddForce(transform.forward * carSpeed, ForceMode.Acceleration);
-                if (carRigid.velocity.magnitude < 8f)
-                    carRigid.velocity = transform.forward * 8f;
+                if (carRigid.velocity.magnitude < 6f)
+                    carRigid.velocity = transform.forward * 6f;
 
                 carRigid.AddForce(transform.forward * carSpeed);
                 Debug.Log(carSpeed);
